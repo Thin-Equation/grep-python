@@ -12,6 +12,7 @@ def match_pattern(input_line, pattern):
         return any(c.isdigit() for c in input_line)
     elif pattern == Pattern.ALNUM:
         return any(c.isalnum() for c in input_line)
+
     if len(input_line) == 0 and len(pattern) == 0:
         return True
     if not pattern:
@@ -24,8 +25,8 @@ def match_pattern(input_line, pattern):
         for i in range(len(input_line)):
             if input_line[i].isdigit():
                 return match_pattern(input_line[i:], pattern[2:])
-        else:
-            return False
+            else:
+                return False
     elif pattern[:2] == Pattern.ALNUM:
         if input_line[0].isalnum():
             return match_pattern(input_line[1:], pattern[2:])
@@ -45,7 +46,8 @@ def match_pattern(input_line, pattern):
         return False
     else:
         raise RuntimeError(f"Unhandled pattern: {pattern}")
-        return match_pattern(input_line[1:], pattern)
+    return match_pattern(input_line[1:], pattern)
+
 def main():
     pattern = sys.argv[2]
     input_line = sys.stdin.read()
@@ -56,5 +58,6 @@ def main():
         exit(0)
     else:
         exit(1)
+
 if __name__ == "__main__":
     main()
